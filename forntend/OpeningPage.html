@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spline Viewer Demo</title>
+    <!-- Include the Spline Viewer script -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.91/build/spline-viewer.js"></script>
+    <style>
+        /* Style for the button container */
+        .button-container {
+            position: fixed;
+            bottom: 20px; /* Adjust as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 1; /* Ensure it appears above other content */
+        }
+
+        /* Style for the start button */
+        .start-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            text-decoration: none;
+            font-family: 'Spicy Types', cursive;
+        }
+
+        /* Style for the text */
+        .center-text {
+            font-family: 'Spicy Types', cursive;
+            font-size: 40px;
+            color: red; /* Changed color to red */
+            font-weight: bold; /* Added font weight bold */
+            position: fixed;
+            top: calc(50% + 4px); /* Adjusted top property by 4px */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1; /* Ensure it appears above other content */
+        }
+
+        /* Style for the music button */
+        .music-button {
+            display: inline-block;
+            padding: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1; /* Ensure it appears above other content */
+        }
+    </style>
+</head>
+<body>
+    <!-- Spline Viewer element -->
+    <spline-viewer url="https://prod.spline.design/cLMTJ8zb1w9yOUVF/scene.splinecode">
+    </spline-viewer>
+
+    <!-- Text container -->
+    <div class="center-text" id="typewriter">
+        <!-- Text will be dynamically added here by JavaScript -->
+    </div>
+
+    <!-- Button container -->
+    <div class="button-container">
+        <!-- Start button -->
+        <a href="index.html" class="start-button">Start</a>
+        <!-- Music button -->
+        <div class="music-button" id="musicButton" onclick="toggleMusic()">
+            🔊
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for typewriter effect
+        const text = "SPICE ODYSSEY 🌶️";
+        const delay = 150; // Delay between each letter in milliseconds
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, delay);
+            }
+        }
+
+        typeWriter();
+
+        // Function to toggle music
+        var musicPlaying = false;
+
+        function toggleMusic() {
+            musicPlaying = !musicPlaying;
+            var audio = document.getElementById("backgroundMusic");
+            if (musicPlaying) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
+
+    <!-- Background music -->
+    <audio id="backgroundMusic" loop>
+        <source src="c:\Users\shish\OneDrive\Desktop\mini project files\Chariots-Of-Fire-Theme-Song-instrumentalfx.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+</body>
+</html>
